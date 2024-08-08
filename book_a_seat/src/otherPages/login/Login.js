@@ -19,6 +19,7 @@ const ElementStyle = styled.div`
     justify-content: flex-start;
     padding: 1rem;
     border: 1px solid rgba(0, 0, 0, 0.4);
+    
   }
 
   form {
@@ -100,7 +101,7 @@ const Login = () => {
   const userRef = useRef();
   const errRef = useRef();
 
-  const [user, setUser] = useState('user1');
+  const [user, setUser] = useState('user1]');
   const [pwd, setPwd] = useState('');
   const [errMsg, setErrMsg] = useState('');
   const [success, setSuccess] = useState(false);
@@ -165,7 +166,7 @@ const Login = () => {
             {errMsg}
           </Alert>
         )}
-        <h1>Sign In</h1>
+        <h1>Log In</h1>
         <form onSubmit={handleSubmit} className="form-group">
           <label htmlFor="username">Username:</label>
           <input
