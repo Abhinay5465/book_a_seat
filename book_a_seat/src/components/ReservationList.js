@@ -31,7 +31,7 @@ const ElementStyle = styled.div`
     width: 800px;
 
     p{
-      background-color: lightgray;
+      background-color: #1d8b13;
       margin:0;
       border-top-left-radius: 4px;
       border-top-right-radius: 4px;
@@ -54,7 +54,7 @@ const ElementStyle = styled.div`
   }
 
   tr:hover {
-    background-color: gainsboro;
+    background-color: #1d8b13;
     cursor: pointer;
   }
 
