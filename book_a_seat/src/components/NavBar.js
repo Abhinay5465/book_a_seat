@@ -118,7 +118,7 @@ function NavBar() {
     <ElementStyle>
       <Navbar expand="lg" className="navbar">
         <Container fluid>
-          <Navbar.Brand href="#home">Book a desk!</Navbar.Brand>
+          <Navbar.Brand href="#home">Reserve a seat</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav className="ms-auto">
