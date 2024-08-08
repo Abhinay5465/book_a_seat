@@ -19,7 +19,7 @@ const ElementStyle = styled.div`
   text-align: left;
 
   section {
-    width: 700px;
+    width: 500px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
