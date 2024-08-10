@@ -1,8 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import {
-  faCheck,
-  faTimes,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Login from './Login';
 import Button from 'react-bootstrap/Button';
@@ -11,8 +8,16 @@ import Button from 'react-bootstrap/Button';
 import styled from 'styled-components';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
-const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-// const REGISTER_URL = '/register';
+const PWD_REGEX = /^(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.[!@#$%]).{8,24}$/;
+
+const MainContainer = styled.div`
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(to bottom, #D1A272, white);
+`;
 
 const ElementStyle = styled.div`
   margin-top: 2rem;
@@ -25,6 +30,25 @@ const ElementStyle = styled.div`
     justify-content: flex-start;
     padding: 1rem;
     border: 1px solid rgba(0, 0, 0, 0.4);
+    background-image: url('https://api.daburinternational.com/wp-content/uploads/2024/01/fallback-image-square-800x800-1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+
+  .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://api.daburinternational.com/wp-content/uploads/2024/01/fallback-image-square-800x800-1.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.9; /* Adjust opacity to make the image more or less transparent */
+    z-index: 0.9; /* Ensure the image is behind the content */
   }
 
   form {
@@ -72,8 +96,9 @@ const ElementStyle = styled.div`
 
 const NavbarStyle = styled.div`
   .navbar {
-    width : 1400px;
+    width: 1400px;
     margin-bottom: 1rem;
+    background: linear-gradient(bottom to top, #D1A272, white);
   }
 
   .navbar-nav {
@@ -88,19 +113,16 @@ const NavbarStyle = styled.div`
 const Navbar = () => {
   return (
     <NavbarStyle>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
-		<a href="https://www.dabur.com/" target="_blank" rel="noopener noreferrer">
-          <img src="https://img.etimg.com/thumb/width-1600,height-900,imgsize-34944,resizemode-75,msid-105238348/industry/cons-products/fmcg/140-year-old-dabur-family-hits-trouble-as-it-reinvents-its-business.jpg" alt="Dabur Logo" width="120" height="80" className="d-inline-block align-top" />
-		  </a>
-		  <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <a href="https://www.dabur.com/" target="_blank" rel="noopener noreferrer">
+            <img src="https://img.etimg.com/thumb/width-1600,height-900,imgsize-34944,resizemode-75,msid-105238348/industry/cons-products/fmcg/140-year-old-dabur-family-hits-trouble-as-it-reinvents-its-business.jpg" alt="Dabur Logo" width="120" height="80" className="d-inline-block align-top" />
+          </a>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
-              {/* <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/register" >Register </a>
-              </li> */}
               <li className="nav-item">
                 <a className="nav-link" href="/login">Login</a>
               </li>
@@ -151,41 +173,6 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     alert("Not implemented yet!");
-    /*
-    // if button enabled with JS hack
-    const v1 = USER_REGEX.test(user);
-    const v2 = PWD_REGEX.test(pwd);
-    if (!v1 || !v2) {
-      setErrMsg('Invalid Entry');
-      return;
-    }
-    try {
-      const response = await axios.post(
-        REGISTER_URL,
-        JSON.stringify({ user, pwd }),
-        {
-          headers: { 'Content-Type': 'application/json' },
-          withCredentials: true,
-        }
-      );
-      // TODO: remove console.logs before deployment
-      console.log(JSON.stringify(response?.data));
-      setSuccess(true);
-      //clear state and controlled inputs
-      setUser('');
-      setPwd('');
-      setMatchPwd('');
-    } catch (err) {
-      if (!err?.response) {
-        setErrMsg('No Server Response');
-      } else if (err.response?.status === 409) {
-        setErrMsg('Username Taken');
-      } else {
-        setErrMsg('Registration Failed');
-      }
-      errRef.current.focus();
-    }
-    */
   };
 
   return (
@@ -202,7 +189,6 @@ const Register = () => {
             {errMsg}
           </p>
           <h1>Registration Page</h1>
-		  
           <form onSubmit={handleSubmit} className="form-group">
             <label htmlFor="username">
               Username:
@@ -291,10 +277,10 @@ const Register = () => {
 };
 
 const App = () => (
-  <>
+  <MainContainer>
     <Navbar />
     <Register />
-  </>
+  </MainContainer>
 );
 
 export default App;

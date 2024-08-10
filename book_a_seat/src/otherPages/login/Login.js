@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect, useContext } from 'react';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 import AuthContext from '../../context/AuthProvider';
@@ -8,9 +8,27 @@ import axios from '../../api/axios';
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 const LOGIN_URL = SERVER_URL + 'api/login';
 
+const GlobalStyle = createGlobalStyle`
+  body, html, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #D1A272, white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+  }
+`;
+
 const ElementStyle = styled.div`
-  margin-top: 2rem;
-  text-align: left;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  top: 50px;
 
   section {
     width: 500px;
@@ -19,10 +37,27 @@ const ElementStyle = styled.div`
     justify-content: flex-start;
     padding: 1rem;
     border: 1px solid rgba(0, 0, 0, 0.4);
-    
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background for the form */
+    position: relative; /* Make sure the section is positioned relative for proper z-index stacking */
+    border-radius: 10px;
+    overflow: hidden; /* Ensures the image stays within the section */
+  }
+
+  .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://api.daburinternational.com/wp-content/uploads/2024/01/fallback-image-square-800x800-1.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.4; /* Adjust opacity to make the image more or less transparent */
+    z-index: 0.7; /* Ensure the image is behind the content */
   }
 
   form {
+    position: relative; /* Ensure the form is above the background image */
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -34,16 +69,40 @@ const ElementStyle = styled.div`
     }
   }
 
-  .wrapper_gif {
-    margin-top: 12rem;
-    border: 1px solid rgba(0, 0, 0, 0.4);
+  .errmsg {
+    background-color: lightpink;
+    color: red;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .offscreen {
+    display: none;
+  }
+
+  .line {
+    display: inline-block;
+    margin-top: 1rem;
   }
 `;
 
 const NavbarStyle = styled.div`
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background: linear-gradient(bottom to top, #D1A272, white);
+  display: flex;
+  justify-content: center;
+
   .navbar-custom {
-    width: 1350px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: 1350px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
   }
 
   .navbar-nav-left {
@@ -54,7 +113,7 @@ const NavbarStyle = styled.div`
 function Navbar() {
   return (
     <NavbarStyle>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light navbar-custom">
+      <nav className="navbar navbar-expand-lg navbar-light navbar-custom">
         <div className="container-fluid">
           <a href="https://www.dabur.com/">
             <img
@@ -83,11 +142,6 @@ function Navbar() {
                   Register
                 </a>
               </li>
-              {/* <li className="nav-item">
-                <a className="nav-link" href="/login">
-                  Login
-                </a>
-              </li> */}
             </ul>
           </div>
         </div>
@@ -156,6 +210,7 @@ const Login = () => {
   return (
     <ElementStyle>
       <section>
+        <div className="background-image"></div>
         {errMsg && (
           <Alert
             key="danger"
@@ -166,7 +221,7 @@ const Login = () => {
             {errMsg}
           </Alert>
         )}
-        <h1>Log In</h1>
+        <h1>Sign In</h1>
         <form onSubmit={handleSubmit} className="form-group">
           <label htmlFor="username">Username:</label>
           <input
@@ -205,6 +260,7 @@ const Login = () => {
 
 const App = () => (
   <>
+    <GlobalStyle />
     <Navbar />
     <Login />
   </>
