@@ -15,7 +15,7 @@ import MyBooking from './MyBooking';
 
 const ElementStyle = styled.div`
   .navbar {
-    background-color: #1d8b13;
+    background-color: #D1A272;
   }
 
   .navbar-brand {
@@ -71,9 +71,9 @@ const ElementStyle = styled.div`
     font-weight: bold;
     padding: 5px 10px;
     border-radius: 5px;
-    background-color: #0056b3;
+    background-color: #D1A272;
     &:hover {
-      background-color: #004085;
+      background-color: black;
       cursor: pointer;
     }
   }
