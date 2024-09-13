@@ -3,8 +3,7 @@ import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Login from './Login';
 import Button from 'react-bootstrap/Button';
-// import Alert from 'react-bootstrap/Alert';
-// import axios from '../../api/axios';
+import axios from '../../api/axios';
 import styled from 'styled-components';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
@@ -47,8 +46,8 @@ const ElementStyle = styled.div`
     background-image: url('https://api.daburinternational.com/wp-content/uploads/2024/01/fallback-image-square-800x800-1.jpg');
     background-size: cover;
     background-position: center;
-    opacity: 0.9; /* Adjust opacity to make the image more or less transparent */
-    z-index: 0.9; /* Ensure the image is behind the content */
+    opacity: 0.9;
+    z-index: 0.9;
   }
 
   form {
@@ -172,34 +171,44 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Not implemented yet!");
-  };
 
+    if (!validName || !validPwd || !validMatch) {
+      setErrMsg('Invalid entry');
+      return;
+    }
+
+    try {
+      const response = await axios.post('/api/register', { user, pwd });
+
+      console.log(response.data);
+      setSuccess(true); // Show success message
+
+    } catch (error) {
+      if (!error?.response) {
+        setErrMsg('No Server Response');
+      } else if (error.response?.status === 409) {
+        setErrMsg('Username Taken');
+      } else {
+        setErrMsg('Registration Failed');
+      }
+      errRef.current.focus();
+    }
+  };
   return (
     <ElementStyle>
       {success ? (
         <Login />
       ) : (
         <section>
-          <p
-            ref={errRef}
-            className={errMsg ? 'errmsg' : 'offscreen'}
-            aria-live="assertive"
-          >
+          <p ref={errRef} className={errMsg ? 'errmsg' : 'offscreen'} aria-live="assertive">
             {errMsg}
           </p>
           <h1>Registration Page</h1>
           <form onSubmit={handleSubmit} className="form-group">
             <label htmlFor="username">
               Username:
-              <FontAwesomeIcon
-                icon={faCheck}
-                className={validName ? 'valid' : 'hide'}
-              />
-              <FontAwesomeIcon
-                icon={faTimes}
-                className={validName || !user ? 'hide' : 'invalid'}
-              />
+              <FontAwesomeIcon icon={faCheck} className={validName ? 'valid' : 'hide'} />
+              <FontAwesomeIcon icon={faTimes} className={validName || !user ? 'hide' : 'invalid'} />
             </label>
             <input
               type="text"
@@ -215,16 +224,11 @@ const Register = () => {
               onFocus={() => setUserFocus(true)}
               onBlur={() => setUserFocus(false)}
             />
+
             <label htmlFor="password">
               Password:
-              <FontAwesomeIcon
-                icon={faCheck}
-                className={validPwd ? 'valid' : 'hide'}
-              />
-              <FontAwesomeIcon
-                icon={faTimes}
-                className={validPwd || !pwd ? 'hide' : 'invalid'}
-              />
+              <FontAwesomeIcon icon={faCheck} className={validPwd ? 'valid' : 'hide'} />
+              <FontAwesomeIcon icon={faTimes} className={validPwd || !pwd ? 'hide' : 'invalid'} />
             </label>
             <input
               type="password"
@@ -238,16 +242,11 @@ const Register = () => {
               onFocus={() => setPwdFocus(true)}
               onBlur={() => setPwdFocus(false)}
             />
+
             <label htmlFor="confirm_pwd">
               Confirm Password:
-              <FontAwesomeIcon
-                icon={faCheck}
-                className={validMatch && matchPwd ? 'valid' : 'hide'}
-              />
-              <FontAwesomeIcon
-                icon={faTimes}
-                className={validMatch || !matchPwd ? 'hide' : 'invalid'}
-              />
+              <FontAwesomeIcon icon={faCheck} className={validMatch && matchPwd ? 'valid' : 'hide'} />
+              <FontAwesomeIcon icon={faTimes} className={validMatch || !matchPwd ? 'hide' : 'invalid'} />
             </label>
             <input
               type="password"
@@ -258,7 +257,6 @@ const Register = () => {
               aria-invalid={validMatch ? 'false' : 'true'}
               aria-describedby="confirmnote"
               className="form-control"
-              onFocus={() => setMatchFocus(true)}
               onBlur={() => setMatchFocus(false)}
             />
             <Button type="submit">Sign Up</Button>
