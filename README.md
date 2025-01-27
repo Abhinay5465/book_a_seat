@@ -91,8 +91,8 @@ This project was a collaborative effort of **three members** to tackle space con
 ---
 
 ### **Contributors**
-- [Abhinay Garg](#)  
-- [Shradha Rai]
-- [Rishabh Nigam] 
+- Abhinay Garg
+- Shradha Rai
+- Rishabh Nigam
 
 
