@@ -1,69 +1,48 @@
-# Dabur's book_a_seat
+Dabur's Workspace Optimizer
+Background
+The modern workplace is evolving with the rise of remote and hybrid work models. At Dabur, like many other organizations, we face space constraints that often result in overcrowded office environments and unavailability of seating. This issue disrupts productivity and forces many employees to work remotely or in a hybrid mode without prior planning.
 
-1.BACKGROUND 
-The modern workplace is undergoing a significant transformation with the rise of remote and 
-hybrid working models. Our Dabur office, like many others, is experiencing space constraints 
-that sometimes result in overcrowding and a lack of available seating for employees. This 
-situation disrupts productivity and leads to many employees working remotely or in a hybrid 
-mode without prior planning. 
-To address this issue, we propose developing a Workspace Optimizer using the MERN 
-(Postgre, Express.js, React, Node.js) stack. This tool aims to provide real-time information on 
-seat availability within the office, enabling employees to plan their workdays more effectively. 
-By informing employees in advance about the availability of workspaces, the optimizer will 
-help in reducing overcrowding, improving resource utilization, and enhancing overall 
-workplace efficiency. 
- 
-2.OBJECTIVE 
- Enhance employee satisfaction 
- Manage workspace effectively  
- User-Friendly interface 
- Real-time seat Availability 
- 
-3. TARGET AUDIENCE 
- IT Department: 
-1. Primary Audience: Responsible for implementing and maintaining the 
-Workspace Optimizer system. 
-2. Use the system to ensure seamless integration with existing office management 
-systems and provide technical support. 
- 
- Future Expansion: 
-If the current project is successful, we plan to expand the Workspace Optimizer to other 
-departments, including HR, Sales, and more. Additionally, we aim to extend the system 
-to manage and optimize parking space availability, providing employees with real-time 
-information about parking options. 
- 
- 
- 
-4. TECK STACK USED  
- PostgreSQL 
- Express.js 
- React.js 
- Node.js 
- 
-5.  PROJECT FUNCTIONALITIES 
-During the internship, We contributed to the development of a Workspace Optimizer as a group 
-of three. The project aimed to address space constraints in the office by providing employees 
-with real-time seat availability information. Built using the MERN (PostgreSQL, Express.js, 
-React, Node.js) stack, this tool was designed to enhance resource utilization and reduce 
-overcrowding, enabling employees to plan their workdays more effectively. We took 
-inspiration and references from Dabur’s website while developing the solution. 
-Key Modules Developed: 
- Login Page: 
-o The login page provided access for both admin and registered users. 
-o Admin users had a preset password and exclusive access rights. 
-o Registered users could set their own username (alphanumeric) and password 
-upon registration. 
- User Page: 
-o The user page featured two options: My Booking and Reservation. 
-o Users could view their booking details (date and time duration) under the My 
-Booking section. 
-o Only one booking per user was allowed at any given time, with no multiple 
-bookings permitted. 
-o Users could reserve a table or space but could only book one day in advance. 
- Admin Page: 
-o The admin page displayed all user details, including usernames, booking dates, 
-and times. 
-o Admins could monitor the bookings but are not permitted to delete any user 
-reservations. 
-This system ensures smoother workspace allocation and improved workplace efficiency by 
-helping employees plan their workdays and avoid overcrowding issues. 
+To address this challenge, we developed the Workspace Optimizer, a tool built using the MERN stack (PostgreSQL, Express.js, React.js, Node.js). The goal of the Workspace Optimizer is to provide real-time information on seat availability within the office, allowing employees to plan their workdays more effectively. The system will reduce overcrowding, improve resource utilization, and enhance workplace efficiency.
+
+Objective
+The key objectives of the Workspace Optimizer are:
+
+Enhance employee satisfaction by offering a seamless workspace reservation experience.
+Manage workspace effectively to reduce overcrowding and ensure optimal seat utilization.
+Provide a user-friendly interface that is intuitive for employees and admins alike.
+Offer real-time seat availability to help employees plan ahead.
+Target Audience
+IT Department
+
+Primary Audience: Responsible for the development, implementation, and maintenance of the Workspace Optimizer system.
+Ensure seamless integration with existing office management systems and provide technical support.
+Future Expansion
+
+The success of this project will lead to its expansion to other departments such as HR, Sales, etc.
+Additionally, we aim to extend the system to manage and optimize parking space availability for employees, providing real-time information on available parking options.
+Tech Stack Used
+PostgreSQL (Database)
+Express.js (Backend framework)
+React.js (Frontend framework)
+Node.js (Backend runtime)
+Project Functionalities
+The Workspace Optimizer project, developed during an internship, was a team effort to address space constraints by providing real-time seat availability information. The system helps employees plan their workdays and ensures that the workspace is effectively managed.
+
+Key Modules Developed
+Login Page
+
+Access for both admin and registered users.
+Admin users have a preset password and exclusive access rights.
+Registered users can create their own usernames (alphanumeric) and set a password upon registration.
+User Page
+
+Two main sections: My Booking and Reservation.
+My Booking: Users can view their booking details, including the date and time duration.
+Reservation: Users can reserve a table or space but only for one day in advance. Multiple bookings per user are not allowed.
+Admin Page
+
+Admins have a view of all user details, including usernames, booking dates, and times.
+Admins can monitor user bookings but cannot delete any reservations.
+The Workspace Optimizer system provides a solution to manage workspace allocation efficiently and ensures better utilization of office resources.
+
+
